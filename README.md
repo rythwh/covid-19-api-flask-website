@@ -1,3 +1,5 @@
+![Screenshot of Website](/screenshots/COVIDWebsiteScreenshot1.png)
+
 CIS 3210 Lab 10
 Ryan White
 
