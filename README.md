@@ -10,9 +10,9 @@ How to start server:
 4. Server will be running locally.
 
 How to connect to SQL:
-1. mysql -h <redacted> -u <Central Login ID> -p
+1. mysql -h \<redacted> -u \<Central Login ID> -p
 2. password is student number
-3. enter command: use <redacted>
+3. enter command: use \<redacted>
 5. enter command: describe users;
 4. enter command: select * from users;
 
