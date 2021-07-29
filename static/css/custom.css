@@ -1,0 +1,175 @@
+.header {
+    background-color: #D6D6D6;
+    color: #333;
+
+    position: fixed;
+    height: 90px;
+
+    top: 0px;
+    left: 0px;
+    right: 0px;
+
+    margin-top: 0px;
+
+    text-align: center;
+    vertical-align: middle;
+}
+
+.welcome-user {
+    position: fixed;
+    top: 5px;
+    right: 5px;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+
+.logout-button {
+    position: fixed;
+    top: 15px;
+    right: 0px;
+    margin-top: 15px;
+    margin-right: 0px;
+}
+
+.login-header {
+    color: #333;
+    text-shadow: none;
+}
+
+.body {
+    margin-top: 110px;
+    margin-bottom: 20px;
+
+    background-color: #FFF;
+
+    color: #FFF;
+    text-align: center;
+}
+
+.region-selection {
+    margin-bottom: 40px;
+}
+
+.region-dropdown {
+    min-width: 300px;
+    min-height: 42px;
+    max-height: 42px;
+    border-width: 2px;
+    border-radius: 0px;
+    border-color: #D6D6D6;
+    margin: 10px 10px 10px 0px;
+}
+
+.covid-data {
+    color: #333;
+    width: 85%;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.covid-data-table {
+    width: 100%;
+
+    text-align: left;
+    font-size: 16px;
+
+    border: 0px solid #D6D6D6;
+}
+
+tr, th, td {
+    border: 1px solid  #D6D6D6;
+}
+
+.table-titles {
+    background-color: #EEE;
+}
+
+.table-cases {
+    background-color: #EEE;
+}
+
+.table-hospitalizations {
+    background-color:#BEE5EB;
+}
+
+.table-criticals {
+    background-color:#FFEEBA;
+}
+
+.table-deaths {
+    background-color:#F5C6CB;
+}
+
+.table-recoveries {
+    background-color:#C3E6CB;
+}
+
+.table-tests {
+    background-color:#EEE;
+}
+
+.source-table {
+    width: 100%;
+    border: 0px;
+    margin-top: -20px;
+}
+
+.source-table-item {
+    border: 0px;
+}
+
+.source-table-item-left {
+    border: 0px;
+    text-align: left;
+}
+
+.source-table-item-right {
+    border: 0px;
+    text-align: right;
+}
+
+.chart-container {
+    position: relative;
+    margin: auto;
+    width: 85vw;
+    height: 30vh;
+}
+
+.grey-text {
+    color: #333;
+}
+
+.small-grey-button, .large-grey-button {
+    background-color: #D6D6D6;
+    border: none;
+    color: #333;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+.small-grey-button {
+    padding: 8px 16px;
+    min-height: 42px;
+    max-height: 42px;
+}
+
+.footer {
+    background-color: #D6D6D6;
+
+    position: fixed;
+    height: 20px;
+
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    
+    margin-bottom: 0px;
+}
+
+.student {
+    color: #333;
+    text-shadow: none;
+}

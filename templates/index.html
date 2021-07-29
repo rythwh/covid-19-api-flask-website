@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="shortcut icon" href="#">
+		
+		<title>CIS*3210 Lab 10</title>
+
+		<!-- Bootstrap core CSS -->
+		<link href="/css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- Custom styles for this template -->
+		<!-- <link href="/css/cover.css" rel="stylesheet"> -->
+		<link href="/css/custom.css" rel="stylesheet">
+
+		<!-- chart.js -->
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+
+		<!-- Scripts -->
+		<script src="/js/jquery.min.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
+		<script src="/js/init.js"></script>
+	</head>
+
+	<div class="header">
+		<h1>CIS*3210 Lab 10</h1>
+		<h4>COVID Data Visualisation</h4>
+		{% if not login %}
+		<form method="POST">
+			<p class="welcome-user">Welcome {{ session['username'] }}!</p>
+			<input method="GET" type="submit" class="logout-button large-grey-button" name="logout" value="Logout">
+		</form>
+		{% endif %}
+	</div>
+
+	<body class="body">
+		{% if login %}
+			<h3 class="login-header">Login or Create Account</h3>
+			<form method="POST">
+				<p><input type="text" placeholder="Username" name="username" value="{{request.form.username }}"></p>
+				<p><input type="password" placeholder="Password" name="password" value="{{request.form.password }}"></p>
+				<p><input type="submit" class="large-grey-button" value="Login"></p>
+					{% if error %}
+					<p id="request-status-text"></p>
+					{% endif %}
+			</form>
+		{% else %}
+			{% if session['covid'] %}
+				<div class="region-selection">
+					<label for="region-dropdown" class="grey-text">Select a Region:</label>
+					<select name="Region" id="region-dropdown" class="region-dropdown">
+						<option value="Canada">Canada</option>
+						<option value="ON">Ontario</option>
+						<option value="QC">Quebec</option>
+						<option value="NS">Nova Scotia</option>
+						<option value="NB">New Brunswick</option>
+						<option value="MB">Manitoba</option>
+						<option value="BC">British Columbia</option>
+						<option value="PE">Prince Edward Island</option>
+						<option value="SK">Saskatchewan</option>
+						<option value="AB">Alberta</option>
+						<option value="NL">Newfoundland and Labrador</option>
+						<option value="NT">Northwest Territories</option>
+						<option value="YT">Yukon</option>
+						<option value="NU">Nunavut</option>
+					</select>
+					<input type="submit" id="update-data-button" class="small-grey-button" value="Refresh">
+				</div>
+				
+				<div class="covid-data">
+					<table class="covid-data-table table">
+						<caption>COVID-19 Data for {{ session['region'] }}</caption>
+						<tr class="table-titles">
+							<th></th>
+							<th>Today</th>
+							<th>Total</th>
+							<th>Today's Percent of Total</th>
+						</tr>
+						<tr class="table-cases">
+							<th>Cases</th>
+							<td>{{ session['covid']['cases_change'] }}</td>
+							<td>{{ session['covid']['cases_total'] }}</td>
+							<td>{{ session['percentage']['cases'] }}%</td>
+						</tr>
+						<tr class="table-hospitalizations">
+							<th>Hospitalizations</th>
+							<td>{{ session['covid']['hospitalizations_change'] }}</td>
+							<td>{{ session['covid']['hospitalizations_total'] }}</td>
+							<td>{{ session['percentage']['hospitalizations'] }}%</td>
+						</tr>
+						<tr class="table-criticals">
+							<th>Criticals</th>
+							<td>{{ session['covid']['criticals_change'] }}</td>
+							<td>{{ session['covid']['criticals_total'] }}</td>
+							<td>{{ session['percentage']['criticals'] }}%</td>
+						</tr>
+						<tr class="table-deaths">
+							<th>Deaths</th>
+							<td>{{ session['covid']['deaths_change'] }}</td>
+							<td>{{ session['covid']['deaths_total'] }}</td>
+							<td>{{ session['percentage']['deaths'] }}%</td>
+						</tr>
+						<tr class="table-recoveries">
+							<th>Recoveries</th>
+							<td>{{ session['covid']['recoveries_change'] }}</td>
+							<td>{{ session['covid']['recoveries_total'] }}</td>
+							<td>{{ session['percentage']['recoveries'] }}%</td>
+						</tr>
+						<tr class="table-tests">
+							<th>Tests</th>
+							<td>{{ session['covid']['tests_change'] }}</td>
+							<td>{{ session['covid']['tests_total'] }}</td>
+							<td>{{ session['percentage']['tests'] }}%</td>
+						</tr>
+					</table>
+					<table class="source-table">
+						<tr class="source-table-item">
+							<td class="source-table-item-left">{{ session['covid']['last_updated'] }}</td>
+							<td class="source-table-item-right">api.covid19tracker.ca</td>
+						</tr>
+					</table>
+				</div>
+				<div class="chart-container">
+					<canvas id="chart"></canvas>
+					<script>
+						updateChart(
+							"{{ session['covid']['chart_data']['labels'] }}",
+							"{{ session['covid']['chart_data']['data']['change_cases'] }}",
+							"{{ session['covid']['chart_data']['data']['total_cases'] }}"
+						);
+						selectRegion("{{ session['regionShort']}}");
+					</script>
+				</div>
+			{% endif %}
+		{% endif %}
+	</div>
+	</body>
+
+	<footer class="footer">
+		<p class="student">Ryan White	0967628</p>
+	</footer>
+</html>
